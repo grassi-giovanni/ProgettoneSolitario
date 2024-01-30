@@ -4,13 +4,13 @@ from pymongo.server_api import ServerApi
 
 
 #Operazioni CRUD
+uri = "mongodb+srv://grassigiovanni:giogalvani@cluster0.8hojujv.mongodb.net/?retryWrites=true&w=majority"
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
 
 # CREATE
-def create_record(data):
-    uri = "mongodb+srv://grassigiovanni:giogalvani@cluster0.8hojujv.mongodb.net/?retryWrites=true&w=majority"
-    # Create a new client and connect to the server
-    client = MongoClient(uri, server_api=ServerApi('1'))
-
+def create_record(data,client):
+    
     mydb = client["TopUni"]
     mycol = mydb["uniList"]
     result = mycol.insert_one(data)
@@ -34,5 +34,5 @@ data=( {
   "Fundos (US$)": 6.7
 })
 
-create_record(data)
+create_record(data,client)
 
